@@ -2242,7 +2242,7 @@ def process_folders(source_folders, video_settings, delete_source):
         # Skip this folder if we it does not fall within provided timestamps.
         if (
                 video_settings["start_timestamp"] is not None
-                and last_clip_tmstp < video_settings["start_timestamp"]
+                and last_clip_tmstp < first_clip_tmstp
         ):
             # Clips from this folder are from before start timestamp requested.
             _LOGGER.debug(
@@ -2253,7 +2253,7 @@ def process_folders(source_folders, video_settings, delete_source):
 
         if (
                 video_settings["end_timestamp"] is not None
-                and first_clip_tmstp > video_settings["end_timestamp"]
+                and first_clip_tmstp > last_clip_tmstp
         ):
             # Clips from this folder are from after end timestamp requested.
             _LOGGER.debug(
